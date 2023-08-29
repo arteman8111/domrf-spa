@@ -25,8 +25,17 @@ function createPost(gap){
 }
 
 function getSquare(){
-    wallHeight.value * wallWidth.value * 10000
+    return wallHeight.value * wallWidth.value ===0
 }
+
+function getAmountOfPgp(){
+  return Math.ceil((wallHeight.value * wallWidth.value * 10000 - gapSize.value.reduce((accum,item) => accum + item.width * item.height, 0)) / pgpSize)
+}
+
+function getCheckWallSize(){
+  return wallHeight.value > 0 && wallWidth.value > 0
+}
+
 
 </script>
 
@@ -57,11 +66,11 @@ function getSquare(){
       @remove="removePost"
       />
       <h2 class="app__title">Общие параметры</h2>
-      <section class="app__container" v-if="Math.ceil((wallHeight * wallWidth * 10000 - gapSize.reduce((accum,item) => accum + item.width * item.height, 0)) / pgpSize) > 0 && (wallHeight > 0 && wallWidth > 0)">
-          <p><b>Это количество плит:</b> {{ Math.ceil((wallHeight * wallWidth * 10000 - gapSize.reduce((accum,item) => accum + item.width * item.height, 0)) / pgpSize) }} шт</p>
-          <p><b>Это масса стены:</b> {{ pgpWeight * Math.ceil((wallHeight * wallWidth * 10000 - gapSize.reduce((accum,item) => accum + item.width * item.height, 0)) / pgpSize) }} кг</p>
-        </section>
-      <h3 v-else-if="wallHeight * wallWidth ===0" class="not-size">Введите размеры стены</h3>
+      <section class="app__container" v-if="getAmountOfPgp() > 0 && getCheckWallSize()">
+          <p><b>Это количество плит:</b> {{ getAmountOfPgp() }} шт</p>
+          <p><b>Это масса стены:</b> {{ pgpWeight * getAmountOfPgp() }} кг</p>
+      </section>
+      <h3 v-else-if="getSquare()" class="not-size">Введите размеры стены</h3>
       <h3 v-else class="error">У вас слишком много проёмов или неккоректно введены данные!</h3>
   </div>
 </div>
