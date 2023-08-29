@@ -4,14 +4,14 @@
         <MyInput 
         id="height"
         v-model:value="gap.width" 
-        type="text" 
+        type="number" 
         placeholder="Высота"
         />
         <label class="app__label" for="width">Высота проёма:</label>
         <MyInput
         id="width"
         v-model:value="gap.height" 
-        type="text" 
+        type="number" 
         placeholder="Ширина"
         />
         <MyButton
