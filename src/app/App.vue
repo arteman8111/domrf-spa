@@ -37,14 +37,14 @@ function getSquare(){
         id="height"
         v-model:value="wallHeight" 
         type="number" 
-        placeholder="Высота"
+        placeholder="Высота, [м]"
         />
         <label class="app__label" for="width">Ширина стены:</label>
         <MyInput
         id="width"
         v-model:value="wallWidth" 
         type="number" 
-        placeholder="Ширина"
+        placeholder="Ширина, [м]"
         />
         <h2 class="app__title">Введите ширину и высоту проёма</h2>
      <PostForm 
