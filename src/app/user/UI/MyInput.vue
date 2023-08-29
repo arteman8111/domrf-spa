@@ -1,5 +1,5 @@
 <template>
-    <input :value="value" @input="$emit('update:value', $event.target.value)" class="input" type="text">
+    <input :value="value" @input="$emit('update:value', $event.target.value)" class="input" type="text" min="0">
 </template>
 
 <script setup>
