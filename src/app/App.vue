@@ -55,10 +55,12 @@ function getSquare(){
       @remove="removePost"
       />
       <h2 class="app__title">Общие параметры</h2>
-      <section class="app__container">
+      <section class="app__container" v-if="Math.ceil((wallHeight * wallWidth * 10000 - gapSize.reduce((accum,item) => accum + item.width * item.height, 0)) / pgpSize) > 0">
           <p><b>Это количество плит:</b> {{ Math.ceil((wallHeight * wallWidth * 10000 - gapSize.reduce((accum,item) => accum + item.width * item.height, 0)) / pgpSize) }} шт</p>
           <p><b>Это масса стены:</b> {{ pgpWeight * Math.ceil((wallHeight * wallWidth * 10000 - gapSize.reduce((accum,item) => accum + item.width * item.height, 0)) / pgpSize) }} кг</p>
         </section>
+
+      <h3 v-else class="error">У вас слишком много проёмов!</h3>
   </div>
 </div>
 </template>
@@ -100,5 +102,9 @@ function getSquare(){
     background-color: #242424;
     padding: 10px 30px;
   }
-
+  .error {
+    border: 1px solid red;
+    color: red;
+    padding: 25px 15px;
+  }
 </style>
