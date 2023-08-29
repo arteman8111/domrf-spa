@@ -59,8 +59,8 @@ function getSquare(){
           <p><b>Это количество плит:</b> {{ Math.ceil((wallHeight * wallWidth * 10000 - gapSize.reduce((accum,item) => accum + item.width * item.height, 0)) / pgpSize) }} шт</p>
           <p><b>Это масса стены:</b> {{ pgpWeight * Math.ceil((wallHeight * wallWidth * 10000 - gapSize.reduce((accum,item) => accum + item.width * item.height, 0)) / pgpSize) }} кг</p>
         </section>
-
-      <h3 v-else class="error">У вас слишком много проёмов!</h3>
+      <h3 v-else-if="wallHeight * wallWidth ===0" class="not-size">Введите размеры стены</h3>
+      <h3 v-else class="error">У вас слишком много проёмов или они их размер не соотвествует!</h3>
   </div>
 </div>
 </template>
@@ -105,6 +105,11 @@ function getSquare(){
   .error {
     border: 1px solid red;
     color: red;
+    padding: 25px 15px;
+  }
+  .not-size {
+    border: 1px solid rgb(178, 2, 134);
+    color: rgb(178, 2, 134);
     padding: 25px 15px;
   }
 </style>
